@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Todolist} from "./Todolist";
+import {Todolist} from './Todolist';
 
 function App() {
 
@@ -15,13 +15,10 @@ function App() {
         { id: 3, title: "Yo", isDone: false }
     ]
 
-    const title1 = "What to learn"
-    const title2 = 'What to buy'
     return (
         <div className="App">
-            <Todolist title={title1} tasks={tasks1}/>
-            <Todolist title={title2} tasks={tasks2}/>
-
+            <Todolist title="What to learn" tasks={tasks1} />
+            <Todolist title="Songs" tasks={tasks2} />
         </div>
     );
 }
