@@ -55,8 +55,6 @@ function App() {
                 changeTaskStatus={changeTaskStatus}
                 filter={filter}
             />
-
-
         </div>
     );
 }

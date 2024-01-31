@@ -69,8 +69,12 @@ export const Todolist = (props: TodolistPropsType) => {
 
                     return (
                         <li key={el.id}>
-                            <input type="checkbox" checked={el.isDone} onChange={onChangeStatusHandler}/>
-                            <span>{el.title}</span>
+                            <input
+                                type="checkbox"
+                                checked={el.isDone}
+                                onChange={onChangeStatusHandler}
+                            />
+                            <span className={el.isDone ? 'is-done' : ''}>{el.title}</span>
                             <button onClick={onClickHandler}>✖</button>
                         </li>
                     )
