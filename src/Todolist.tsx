@@ -8,6 +8,7 @@ export type TodolistPropsType = {
     changeFilter: (value: FilterType) => void
     addTask: (title: string) => void
     changeTaskStatus: (id: string, isDone: boolean) => void
+    filter: FilterType
 }
 
 export type TaskType = {
@@ -18,11 +19,14 @@ export type TaskType = {
 
 export const Todolist = (props: TodolistPropsType) => {
     const [title, setTitle] = useState('')
+    const [error, setError] = useState<string | null>(null)
 
     const addTask = () => {
         if (title.trim() !== '') {
             props.addTask(title.trim())
             setTitle('')
+        } else {
+            setError('Title is required')
         }
     }
 
@@ -31,7 +35,7 @@ export const Todolist = (props: TodolistPropsType) => {
     }
 
     const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-
+        setError(null)
         if (event.key === 'Enter') {
             addTask()
         }
@@ -49,8 +53,10 @@ export const Todolist = (props: TodolistPropsType) => {
                     value={title}
                     onChange={onChangeHandler}
                     onKeyPress={onKeyPressHandler}
+                    className={error ? 'error' : ''}
                 />
                 <button onClick={addTask}>+</button>
+                {error && <div className={'error-message'}>{error}</div>}
             </div>
             <ul>
                 {props.tasks.map(el => {
@@ -71,17 +77,20 @@ export const Todolist = (props: TodolistPropsType) => {
                 })}
             </ul>
             <div>
-                <button onClick={() => {
-                    onChangeFilterHandler("All")
-                }}>All
+                <button
+                    className={props.filter === "All" ? 'active-filter' : ''}
+                    onClick={()=>{onChangeFilterHandler("All")}}>
+                    All
                 </button>
-                <button onClick={() => {
-                    onChangeFilterHandler("Active")
-                }}>Active
+                <button
+                    className={props.filter === "Active" ? 'active-filter' : ''}
+                    onClick={() => {onChangeFilterHandler("Active")}}>
+                    Active
                 </button>
-                <button onClick={() => {
-                    onChangeFilterHandler("Completed")
-                }}>Completed
+                <button
+                    className={props.filter === "Completed" ? 'active-filter' : ''}
+                    onClick={() => {onChangeFilterHandler("Completed")}}>
+                    Completed
                 </button>
             </div>
         </div>
