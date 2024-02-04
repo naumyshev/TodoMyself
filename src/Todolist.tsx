@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import {FilterType} from "./App";
 import {AddItemForm} from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 export type TodolistPropsType = {
     id: string
@@ -12,6 +13,7 @@ export type TodolistPropsType = {
     changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
     filter: FilterType
     removeTodolist: (id: string) => void
+    changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
 }
 
 export type TaskType = {
@@ -34,6 +36,8 @@ export const Todolist = (props: TodolistPropsType) => {
         props.removeTodolist(props.id)
     }
 
+
+
     return (
         <div>
             <h3>
@@ -53,14 +57,18 @@ export const Todolist = (props: TodolistPropsType) => {
                         props.changeTaskStatus(el.id, e.currentTarget.checked, props.id)
                     }
 
+                    const changeTaskTitleHandler = (newTitle:string) => {
+                        props.changeTaskTitle(el.id, newTitle, props.id)
+                    }
+
                     return (
-                        <li key={el.id}>
+                        <li className={el.isDone ? 'is-done' : ''} key={el.id}>
                             <input
                                 type="checkbox"
                                 checked={el.isDone}
                                 onChange={onChangeStatusHandler}
                             />
-                            <span className={el.isDone ? 'is-done' : ''}>{el.title + " "}</span>
+                            <EditableSpan value={el.title} onChange={changeTaskTitleHandler} />
                             <button onClick={onClickHandler}>✖</button>
                         </li>
                     )
