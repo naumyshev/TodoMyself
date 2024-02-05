@@ -4,6 +4,7 @@ import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import {IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
+import {Button} from "@mui/material";
 
 export type TodolistPropsType = {
     id: string
@@ -88,21 +89,27 @@ export const Todolist = (props: TodolistPropsType) => {
                 })}
             </ul>
             <div>
-                <button
-                    className={props.filter === "All" ? 'active-filter' : ''}
-                    onClick={()=>{onChangeFilterHandler("All")}}>
+                <Button
+                    // className={props.filter === "All" ? 'active-filter' : ''}
+                    variant={props.filter === "All" ? 'outlined' : "text"}
+                    onClick={()=>{onChangeFilterHandler("All")}}
+                    color={"inherit"}>
                     All
-                </button>
-                <button
-                    className={props.filter === "Active" ? 'active-filter' : ''}
-                    onClick={() => {onChangeFilterHandler("Active")}}>
+                </Button>
+                <Button
+                    // className={props.filter === "Active" ? 'active-filter' : ''}
+                    variant={props.filter === "Active" ? 'outlined' : "text"}
+                    onClick={() => {onChangeFilterHandler("Active")}}
+                    color={"primary"}>
                     Active
-                </button>
-                <button
-                    className={props.filter === "Completed" ? 'active-filter' : ''}
-                    onClick={() => {onChangeFilterHandler("Completed")}}>
+                </Button>
+                <Button
+                    // className={props.filter === "Completed" ? 'active-filter' : ''}
+                    variant={props.filter === "Completed" ? 'outlined' : "text"}
+                    onClick={() => {onChangeFilterHandler("Completed")}}
+                    color={"secondary"}>
                     Completed
-                </button>
+                </Button>
             </div>
         </div>
     );
