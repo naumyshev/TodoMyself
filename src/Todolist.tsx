@@ -2,6 +2,8 @@ import React, {ChangeEvent} from 'react';
 import {FilterType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
+import {IconButton} from "@mui/material";
+import {Delete} from "@mui/icons-material";
 
 export type TodolistPropsType = {
     id: string
@@ -47,7 +49,10 @@ export const Todolist = (props: TodolistPropsType) => {
         <div>
             <h3>
                 <EditableSpan value={props.title} onChange={onChangeTodolistTitleHandler} />
-                <button onClick={onClickRemoveTodolistHandler}>✖</button>
+                {/*<button onClick={onClickRemoveTodolistHandler}>✖</button>*/}
+                <IconButton onClick={onClickRemoveTodolistHandler}>
+                    <Delete />
+                </IconButton>
             </h3>
 
             <div>
@@ -74,7 +79,10 @@ export const Todolist = (props: TodolistPropsType) => {
                                 onChange={onChangeStatusHandler}
                             />
                             <EditableSpan value={el.title} onChange={changeTaskTitleHandler} />
-                            <button onClick={onClickHandler}>✖</button>
+                            {/*<button onClick={onClickHandler}>✖</button>*/}
+                            <IconButton onClick={onClickHandler}>
+                                <Delete fontSize={"small"}/>
+                            </IconButton>
                         </li>
                     )
                 })}
