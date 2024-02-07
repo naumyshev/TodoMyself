@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {FilterType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {IconButton} from "@mui/material";
+import {Checkbox, IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 import {Button} from "@mui/material";
 
@@ -45,19 +45,18 @@ export const Todolist = (props: TodolistPropsType) => {
     }
 
 
-
     return (
         <div>
             <h3>
-                <EditableSpan value={props.title} onChange={onChangeTodolistTitleHandler} />
+                <EditableSpan value={props.title} onChange={onChangeTodolistTitleHandler}/>
                 {/*<button onClick={onClickRemoveTodolistHandler}>✖</button>*/}
                 <IconButton onClick={onClickRemoveTodolistHandler}>
-                    <Delete />
+                    <Delete/>
                 </IconButton>
             </h3>
 
             <div>
-                <AddItemForm addItem={addTask} />
+                <AddItemForm addItem={addTask}/>
             </div>
             <ul>
                 {props.tasks.map(el => {
@@ -68,18 +67,23 @@ export const Todolist = (props: TodolistPropsType) => {
                         props.changeTaskStatus(el.id, e.currentTarget.checked, props.id)
                     }
 
-                    const changeTaskTitleHandler = (newTitle:string) => {
+                    const changeTaskTitleHandler = (newTitle: string) => {
                         props.changeTaskTitle(el.id, newTitle, props.id)
                     }
 
                     return (
                         <li className={el.isDone ? 'is-done' : ''} key={el.id}>
-                            <input
-                                type="checkbox"
+                            {/*<input*/}
+                            {/*    type="checkbox"*/}
+                            {/*    checked={el.isDone}*/}
+                            {/*    onChange={onChangeStatusHandler}*/}
+                            {/*/>*/}
+                            <Checkbox
                                 checked={el.isDone}
+                                color={"primary"}
                                 onChange={onChangeStatusHandler}
                             />
-                            <EditableSpan value={el.title} onChange={changeTaskTitleHandler} />
+                            <EditableSpan value={el.title} onChange={changeTaskTitleHandler}/>
                             {/*<button onClick={onClickHandler}>✖</button>*/}
                             <IconButton onClick={onClickHandler}>
                                 <Delete fontSize={"small"}/>
@@ -92,21 +96,27 @@ export const Todolist = (props: TodolistPropsType) => {
                 <Button
                     // className={props.filter === "All" ? 'active-filter' : ''}
                     variant={props.filter === "All" ? 'outlined' : "text"}
-                    onClick={()=>{onChangeFilterHandler("All")}}
+                    onClick={() => {
+                        onChangeFilterHandler("All")
+                    }}
                     color={"inherit"}>
                     All
                 </Button>
                 <Button
                     // className={props.filter === "Active" ? 'active-filter' : ''}
                     variant={props.filter === "Active" ? 'outlined' : "text"}
-                    onClick={() => {onChangeFilterHandler("Active")}}
+                    onClick={() => {
+                        onChangeFilterHandler("Active")
+                    }}
                     color={"primary"}>
                     Active
                 </Button>
                 <Button
                     // className={props.filter === "Completed" ? 'active-filter' : ''}
                     variant={props.filter === "Completed" ? 'outlined' : "text"}
-                    onClick={() => {onChangeFilterHandler("Completed")}}
+                    onClick={() => {
+                        onChangeFilterHandler("Completed")
+                    }}
                     color={"secondary"}>
                     Completed
                 </Button>
