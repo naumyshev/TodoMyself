@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {Button, TextField} from "@mui/material";
+import {IconButton, TextField} from "@mui/material";
+import {AddBox} from "@mui/icons-material";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -50,12 +51,17 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                 helperText={error}
             />
             {/*<button onClick={addItem}>+</button>*/}
-            <Button
-                variant={"contained"}
-                color={"primary"}
-                size={"small"} onClick={addItem}
-                style={{maxWidth: '17px', maxHeight: '22px', minWidth: '17px', minHeight: '22px'}}>+
-            </Button>
+            {/*<Button*/}
+            {/*    variant={"contained"}*/}
+            {/*    color={"primary"}*/}
+            {/*    size={"small"} onClick={addItem}*/}
+            {/*    style={{maxWidth: '17px', maxHeight: '22px', minWidth: '17px', minHeight: '22px'}}>+*/}
+            {/*</Button>*/}
+            <IconButton
+                color='primary'
+                onClick={addItem}>
+                <AddBox/>
+            </IconButton>
             {/*{error && <div className={'error-message'}>{error}</div>}*/}
         </div>
     );
