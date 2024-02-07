@@ -44,7 +44,10 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                 value={title}
                 onChange={onChangeHandler}
                 onKeyPress={onKeyPressHandler}
-                className={error ? 'error' : ''}
+                // className={error ? 'error' : ''}
+                error={!!error}
+                label={'Title'}
+                helperText={error}
             />
             {/*<button onClick={addItem}>+</button>*/}
             <Button
@@ -53,7 +56,7 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                 size={"small"} onClick={addItem}
                 style={{maxWidth: '17px', maxHeight: '22px', minWidth: '17px', minHeight: '22px'}}>+
             </Button>
-            {error && <div className={'error-message'}>{error}</div>}
+            {/*{error && <div className={'error-message'}>{error}</div>}*/}
         </div>
     );
 };
