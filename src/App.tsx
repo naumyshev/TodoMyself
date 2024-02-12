@@ -3,6 +3,8 @@ import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
+import {Menu} from "@mui/icons-material";
 
 export type FilterType = "All" | "Completed" | "Active"
 export type TodolistType = {
@@ -81,6 +83,17 @@ function App() {
 
     return (
         <div className="App">
+            <AppBar position='static'>
+                <Toolbar>
+                    <IconButton edge='start' color='inherit' aria-label='menu'>
+                        <Menu />
+                    </IconButton>
+                    <Typography variant='h6'>
+                        Todolist
+                    </Typography>
+                    <Button color={'inherit'}>Login</Button>
+                </Toolbar>
+            </AppBar>
             <div>
                 <h3>Add new todolist</h3>
                 <AddItemForm addItem={addTodolist} />
