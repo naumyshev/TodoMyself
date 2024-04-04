@@ -126,7 +126,7 @@ test('new array should be added when new todolist is added', ()=>{
     const endState = tasksReducer(startState, action)
 
     const keys = Object.keys(endState)
-    const newKey = keys.find(k => k != 'todolistId1' && k != 'todolistId2')
+    const newKey = keys.find(k => k !== 'todolistId1' && k !== 'todolistId2')
 
     expect(keys.length).toBe(3)
 
